@@ -2,6 +2,7 @@ package com.ipartek.componente;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -12,7 +13,8 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtil {					
 	
-	private final String SECRET_KEY = "1234567890qwertyuiopasdfghjklzxcvbnm";
+	@Value("${jwt.secret}")
+    private String SECRET_KEY;
 
 	public String generateToken(String username, String role) {
 		return Jwts.builder()
